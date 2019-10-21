@@ -3,11 +3,6 @@ server:
 spring:
   application:
     name: config-server
-# 自动刷新配置
-  cloud:
-    bus:
-      trace:
-        enabled: true
   profiles:
     active: jdbc
 # rabbitmq配置

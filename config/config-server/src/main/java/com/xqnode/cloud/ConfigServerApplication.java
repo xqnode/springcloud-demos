@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
-@SpringBootApplication //(exclude={DataSourceAutoConfiguration.class})  //禁止启动检查数据源
+@SpringBootApplication//(exclude={DataSourceAutoConfiguration.class})  //禁止启动检查数据源
 @EnableDiscoveryClient
 @EnableConfigServer
 public class ConfigServerApplication {
