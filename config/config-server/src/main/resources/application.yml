@@ -1,17 +1,10 @@
+server:
+  port: 8888
 spring:
   application:
     name: config-server
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://gitee.com/xqnode/springcloud-study
-          search-paths: /config/respo
-          default-label: master
-          username: xqnode
-          password: xq1993916
-server:
-  port: 8888
+  profiles:
+    active: jdbc
 eureka:
   client:
     service-url:

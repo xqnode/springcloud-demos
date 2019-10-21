@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: D:/git/github/springcloud-demos/config/  #注意本地配置是指定目录
