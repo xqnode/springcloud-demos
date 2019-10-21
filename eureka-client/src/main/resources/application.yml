@@ -1,6 +1,14 @@
+server:
+  port: 8001
 spring:
   application:
     name: eureka-client
+    # rabbitmq配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 #配置中心
   cloud:
     config:
@@ -8,8 +16,6 @@ spring:
       profile: default
       label: master
       name: shop
-server:
-  port: 8001
 eureka:
   client:
     service-url:

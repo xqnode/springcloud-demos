@@ -3,8 +3,19 @@ server:
 spring:
   application:
     name: config-server
+# 自动刷新配置
+  cloud:
+    bus:
+      trace:
+        enabled: true
   profiles:
     active: jdbc
+# rabbitmq配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   instance:
     prefer-ip-address: true
@@ -12,3 +23,12 @@ eureka:
   client:
     service-url:
       defaultZone: http://xqnode:123@106.54.198.61:8761/eureka/
+
+#SpringCloud 2.0.0版本以后暴露接口方式
+management:
+    endpoints:
+      web:
+        exposure:
+          include: bus-refresh
+
+
