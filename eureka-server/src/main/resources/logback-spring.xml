@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="APP_NAME" value="eureka-server" />
+	<property name="LOG_PATTERN" value="%date{yyyy-MM-dd HH:mm:ss.SSS} %5level ${PID} --- [%15.15thread] %-40.40logger{40} : %msg%n" />
+	<property name="LOG_HOME" value="./log" />
+	<property name="FILE_PATH" value="${LOG_HOME}/${APP_NAME}.%d{yyyy-MM-dd}.%i.log" />
+
+	<!-- 彩色日志依赖的渲染类 -->
+	<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+	<conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+	<conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+	<!-- 彩色日志格式 -->
+	<property name="CLR_LOG_PATTERN" value="%date{yyyy-MM-dd HH:mm:ss.SSS} %clr(%5level) %clr(${PID}){magenta} --- [%15.15thread] %clr(%-40.40logger{40}){cyan} : %msg%n" />
+
+	<!-- 控制台输出日志 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${CLR_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<!--每天生成一个日志文件，保存30天的日志文件。 -->
+	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${FILE_PATH}</fileNamePattern>
+
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="console" />
+		<appender-ref ref="rollingFile" />
+	</root>
+
+
+</configuration>

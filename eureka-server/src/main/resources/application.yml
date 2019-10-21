@@ -1,0 +1,18 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: eureka-server-master
+#配置访问页面权限验证
+  security:
+    user:
+      name: xqnode
+      password: 123
+eureka:
+  client:
+#关闭自我注册
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://xqnode:123@localhost:8761/eureka/
+
