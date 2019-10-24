@@ -19,7 +19,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://xqnode:123@106.54.198.61:8761/eureka/
+      defaultZone: http://xqnode:123@localhost:8761/eureka/
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
