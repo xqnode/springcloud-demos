@@ -10,7 +10,8 @@ spring:
       password: 123
 eureka:
   server:
-    eviction-interval-timer-in-ms: 5000  #移除失效服务时间
+    eviction-interval-timer-in-ms: 2000  #移除失效服务时间
+    enable-self-preservation: false  #关闭自我保护，快速提出失效服务
   client:
 #关闭自我注册
     register-with-eureka: false

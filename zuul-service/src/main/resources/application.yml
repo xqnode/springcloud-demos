@@ -2,8 +2,31 @@ spring:
   application:
     name: zuul-service
 server:
-  port: 8300
+  port: 1001
 eureka:
   client:
     service-url:
-      defaultZone: http://xqnode:123@106.54.198.61:8761/eureka/
+      defaultZone: http://xqnode:123@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-renewal-interval-in-seconds: 10  #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
+    lease-expiration-duration-in-seconds: 5  #服务刷新时间配置，每隔这个时间会主动心跳一次
+zuul:
+  routes:
+    eureka-client:  #/ec/**   简化版的配置
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+      path: /ec/**
+#      url: forward:/ec       # 拦截所有请求到zuul中指定的接口中处理
+#      url: http://localhost:8001   #serviceId用于多实例配置，url用于单实例配置
+      serviceId: eureka-client
+#  prefix: /pre  #请求前缀
+  ignoredServices: ribbon-service
+#  ignored-patterns: /ribbon
+
+#监控节点  http://localhost:1001/actuator/routes/details
+management:
+  endpoints:
+    web:
+      exposure:
+        include: routes

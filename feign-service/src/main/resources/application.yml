@@ -10,6 +10,8 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-expiration-duration-in-seconds: 10  # 发呆时间，即服务续约到期时间（缺省为90s）
+    lease-renewal-interval-in-seconds: 5  #心跳时间，缺省30s
 #打开feign自带的断路器
 feign:
   okhttp:          #使用okhttp调用
@@ -38,3 +40,10 @@ hystrix:
 logging:
   level:
     com.xqnode.cloud.feign.MyFeignClient: debug
+#服务监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+

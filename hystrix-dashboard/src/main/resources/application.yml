@@ -1,0 +1,15 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: hystrix-dashboard
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xqnode:123@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+turbine:
+  app-config: feign-service,ribbon-service
+  cluster-name-expression: "'default'"

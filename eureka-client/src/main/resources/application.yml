@@ -18,6 +18,7 @@ spring:
       name: shop
 eureka:
   client:
+    registry-fetch-interval-seconds: 5  #eureka client刷新本地缓存时间 默认30s
     service-url:
       defaultZone: http://xqnode:123@localhost:8761/eureka/
   instance:
